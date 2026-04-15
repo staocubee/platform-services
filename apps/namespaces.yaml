@@ -1,14 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-root
+  name: namespaces
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
-    repoURL: https://github.com/staocubee/platform-services.git
+    repoURL: https://github.com/YOUR_ORG/platform-services.git
     targetRevision: HEAD
-    path: .
+    path: manifests/namespaces
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
