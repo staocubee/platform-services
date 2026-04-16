@@ -4,7 +4,7 @@ metadata:
   name: argocd
 spec:
   hosts:
-  - "*"
+  - "platform.34.63.239.83.nip.io"
   gateways:
   - istio-system/platform-gateway
   http:
@@ -25,7 +25,7 @@ metadata:
   name: grafana
 spec:
   hosts:
-  - "*"
+  - "platform.34.63.239.83.nip.io"
   gateways:
   - istio-system/platform-gateway
   http:
@@ -47,7 +47,7 @@ metadata:
   name: nexus
 spec:
   hosts:
-  - "*"
+  - "platform.34.63.239.83.nip.io"
   gateways:
   - istio-system/platform-gateway
   http:
