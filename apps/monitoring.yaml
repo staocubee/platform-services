@@ -28,10 +28,23 @@ spec:
           enabled: false
 
         prometheus-node-exporter:
-          enabled: false
+          tolerations:
+            - effect: NoSchedule
+              operator: Exists
+            - effect: NoSchedule
+              key: kubernetes.io/arch
+              operator: Equal
+              value: amd64
 
         coreDns:
           enabled: false
+  ignoreDifferences:
+  - group: apps
+    kind: DaemonSet
+    name: monitoring-prometheus-node-exporter
+    namespace: monitoring
+    jsonPointers:
+      - '.spec.template.spec.tolerations'
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
