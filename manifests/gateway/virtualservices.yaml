@@ -1,7 +1,8 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: argocd
+  name: platform-routing
+  namespace: istio-system
 spec:
   hosts:
   - "platform.34.63.239.83.nip.io"
@@ -18,17 +19,7 @@ spec:
         host: argocd-server.argocd.svc.cluster.local
         port:
           number: 80
----
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: grafana
-spec:
-  hosts:
-  - "platform.34.63.239.83.nip.io"
-  gateways:
-  - istio-system/platform-gateway
-  http:
+
   - match:
     - uri:
         prefix: /grafana
@@ -36,21 +27,10 @@ spec:
       uri: /
     route:
     - destination:
-        host: kube-prometheus-stack-grafana.monitoring.svc.cluster.local
+        host: monitoring-grafana.monitoring.svc.cluster.local
         port:
           number: 80
 
----
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: nexus
-spec:
-  hosts:
-  - "platform.34.63.239.83.nip.io"
-  gateways:
-  - istio-system/platform-gateway
-  http:
   - match:
     - uri:
         prefix: /nexus
