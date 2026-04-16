@@ -21,7 +21,10 @@ spec:
       jsonPointers:
         - /webhooks/0/clientConfig/caBundle
         - /webhooks/0/failurePolicy
-        - /webhooks/0/namespaceSelector
+      jqPathExpressions:
+        - .webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .namespaceSelector
+        - .webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .clientConfig.caBundle
+        - .webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .failurePolicy
   syncPolicy:
     automated:
       prune: true
