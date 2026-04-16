@@ -13,6 +13,9 @@ spec:
     targetRevision: 56.0.0
     helm:
       values: |
+        crds:
+          enabled: true
+
         kubeEtcd:
           enabled: false
         kubeScheduler:
@@ -37,5 +40,6 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
-    - SkipDryRunOnMissingResource=true
+      - CreateNamespace=true
+      - SkipDryRunOnMissingResource=true
+      - ServerSideApply=true
