@@ -12,7 +12,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "argocd.yourdomain.com"
+    - "argocd.34.63.239.83.nip.io"
   - port:
       number: 443
       name: https
@@ -21,4 +21,4 @@ spec:
       mode: SIMPLE
       credentialName: argocd-tls
     hosts:
-    - "argocd.yourdomain.com"
+    - "argocd.34.63.239.83.nip.io"

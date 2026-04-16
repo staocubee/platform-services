@@ -39,3 +39,25 @@ spec:
         host: kube-prometheus-stack-grafana.monitoring.svc.cluster.local
         port:
           number: 80
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: nexus
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - istio-system/platform-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /nexus
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: nexus.nexus.svc.cluster.local
+        port:
+          number: 80
