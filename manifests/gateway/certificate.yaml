@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-cert
+  namespace: istio-system
+spec:
+  secretName: argocd-tls
+  issuerRef:
+    name: selfsigned-issuer
+    kind: ClusterIssuer
+  commonName: platform.34.63.239.83.nip.io
+  dnsNames:
+    - platform.34.63.239.83.nip.io
