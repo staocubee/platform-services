@@ -18,13 +18,11 @@ spec:
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
       name: istio-sidecar-injector
-      jsonPointers:
-        - /webhooks/0/clientConfig/caBundle
-        - /webhooks/0/failurePolicy
       jqPathExpressions:
-        - .webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .namespaceSelector
-        - .webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .clientConfig.caBundle
-        - .webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .failurePolicy
+        - '.webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .namespaceSelector'
+        - '.webhooks[] | select(.name == "rev.object.sidecar-injector.istio.io") | .clientConfig.caBundle'
+      jsonPointers:
+        - null
   syncPolicy:
     automated:
       prune: true
