@@ -11,6 +11,10 @@ spec:
     repoURL: https://istio-release.storage.googleapis.com/charts
     chart: base
     targetRevision: 1.20.0
+    helm:
+      values: |
+        base:
+          validationFailurePolicy: Fail
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
