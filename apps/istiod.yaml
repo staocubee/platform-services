@@ -20,8 +20,8 @@ spec:
       name: istio-sidecar-injector
       jsonPointers:
         - /webhooks/0/clientConfig/caBundle
-        - /webhooks/1/failurePolicy
-        - /webhooks/1/namespaceSelector
+        - /webhooks/0/failurePolicy
+        - /webhooks/0/namespaceSelector
   syncPolicy:
     automated:
       prune: true
