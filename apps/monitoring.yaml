@@ -11,6 +11,24 @@ spec:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
     targetRevision: 56.0.0
+    helm:
+      values: |
+        kubeEtcd:
+          enabled: false
+        kubeScheduler:
+          enabled: false
+        kubeControllerManager:
+          enabled: false
+        kubeProxy:
+          enabled: false
+        kubeDns:
+          enabled: false
+
+        prometheus-node-exporter:
+          enabled: false
+
+        coreDns:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
