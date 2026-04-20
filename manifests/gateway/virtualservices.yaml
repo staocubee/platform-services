@@ -22,7 +22,7 @@ spec:
 
     - match:
         - uri:
-            prefix: /grafana/
+            prefix: /grafana
       rewrite:
         uri: /
       route:
@@ -40,4 +40,4 @@ spec:
         - destination:
             host: nexus-nexus-repository-manager.nexus.svc.cluster.local
             port:
-              number: 80
+              number: 8081
