@@ -7,18 +7,18 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "platform.35.225.123.14.nip.io"
-  - port:
-      number: 443
-      name: https
-      protocol: HTTPS
-    tls:
-      mode: SIMPLE
-      credentialName: argocd-tls
-    hosts:
-    - "platform.35.225.123.14.nip.io"
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "platform.35.225.123.14.nip.io"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: argocd-tls
+      hosts:
+        - "platform.35.225.123.14.nip.io"

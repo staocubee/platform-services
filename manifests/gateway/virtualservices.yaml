@@ -5,39 +5,39 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-  - "*"
+    - "platform.35.225.123.14.nip.io"
   gateways:
-  - istio-system/platform-gateway
+    - istio-system/platform-gateway
   http:
-  - match:
-    - uri:
-        prefix: /argocd
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: argocd-server.argocd.svc.cluster.local
-        port:
-          number: 80
+    - match:
+        - uri:
+            prefix: /argocd
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: argocd-server.argocd.svc.cluster.local
+            port:
+              number: 80
 
-  - match:
-    - uri:
-        prefix: /grafana
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: monitoring-grafana.monitoring.svc.cluster.local
-        port:
-          number: 80
+    - match:
+        - uri:
+            prefix: /grafana
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: monitoring-grafana.monitoring.svc.cluster.local
+            port:
+              number: 80
 
-  - match:
-    - uri:
-        prefix: /nexus
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: nexus.nexus.svc.cluster.local
-        port:
-          number: 80
+    - match:
+        - uri:
+            prefix: /nexus
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: nexus.nexus.svc.cluster.local
+            port:
+              number: 80
