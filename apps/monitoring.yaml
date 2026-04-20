@@ -26,7 +26,11 @@ spec:
           enabled: false
         kubeDns:
           enabled: false
-
+        grafana:
+          grafana.ini:
+            server:
+              root_url: "%(protocol)s://%(domain)s/grafana/"
+              serve_from_sub_path: true
         prometheus-node-exporter:
           tolerations:
             - effect: NoSchedule
