@@ -1,43 +1,27 @@
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: platform-routing
-  namespace: istio-system
+  name: istio-ingress
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
-  hosts:
-  - "*"
-  gateways:
-  - istio-system/platform-gateway
-  http:
-  - match:
-    - uri:
-        prefix: /argocd
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: argocd-server.argocd.svc.cluster.local
-        port:
-          number: 80
-
-  - match:
-    - uri:
-        prefix: /grafana
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: monitoring-grafana.monitoring.svc.cluster.local
-        port:
-          number: 80
-
-  - match:
-    - uri:
-        prefix: /nexus
-    rewrite:
-      uri: /
-    route:
-    - destination:
-        host: nexus.nexus.svc.cluster.local
-        port:
-          number: 80
+  project: default
+  source:
+    repoURL: https://istio-release.storage.googleapis.com/charts
+    chart: gateway
+    targetRevision: 1.20.0
+    helm:
+      values: |
+        service:
+          type: LoadBalancer
+          loadBalancerIP: 35.225.123.14
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-ingress
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
