@@ -5,7 +5,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - "platform.35.225.123.14.nip.io"
+    - "platform.34.42.129.154.nip.io"
   gateways:
     - istio-system/platform-gateway
   http:

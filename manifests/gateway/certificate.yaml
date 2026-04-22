@@ -8,6 +8,6 @@ spec:
   issuerRef:
     name: selfsigned-issuer
     kind: ClusterIssuer
-  commonName: platform.35.225.123.14.nip.io
+  commonName: platform.34.42.129.154.nip.io
   dnsNames:
-    - platform.35.225.123.14.nip.io
+    - platform.34.42.129.154.nip.io
