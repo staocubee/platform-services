@@ -12,9 +12,7 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "argocd.35.223.57.54.nip.io"
-        - "grafana.35.223.57.54.nip.io"
-        - "nexus.35.223.57.54.nip.io"
+        - "platform.35.223.57.54.nip.io"
     - port:
         number: 443
         name: https
@@ -23,6 +21,4 @@ spec:
         mode: SIMPLE
         credentialName: argocd-tls
       hosts:
-        - "argocd.35.223.57.54.nip.io"
-        - "grafana.35.223.57.54.nip.io"
-        - "nexus.35.223.57.54.nip.io"
+        - "platform.35.223.57.54.nip.io"
