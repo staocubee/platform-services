@@ -12,8 +12,6 @@ spec:
     - match:
         - uri:
             prefix: /argocd
-      rewrite:
-        uri: /
       route:
         - destination:
             host: argocd-server.argocd.svc.cluster.local
@@ -23,8 +21,6 @@ spec:
     - match:
         - uri:
             prefix: /grafana
-      rewrite:
-        uri: /
       route:
         - destination:
             host: monitoring-grafana.monitoring.svc.cluster.local

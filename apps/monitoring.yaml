@@ -30,7 +30,7 @@ spec:
         grafana:
           grafana.ini:
             server:
-              root_url: http://platform.35.223.57.54.nip.io/grafana/
+              root_url: http://platform.35.223.57.54.nip.io/grafana
               serve_from_sub_path: true
 
         prometheus-node-exporter:
