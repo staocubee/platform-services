@@ -11,27 +11,33 @@ spec:
   gateways:
     - istio-system/platform-gateway
   http:
+    # 1. ArgoCD Route
     - match:
-        - uri:
-            prefix: /  # Match everything
+        - headers:
+            host:
+              exact: "argocd.35.223.57.54.nip.io"
       route:
         - destination:
             host: argocd-server.argocd.svc.cluster.local
             port:
               number: 80
 
+    # 2. Grafana Route
     - match:
-        - authority:
-            exact: "grafana.35.223.57.54.nip.io"
+        - headers:
+            host:
+              exact: "grafana.35.223.57.54.nip.io"
       route:
         - destination:
             host: monitoring-grafana.monitoring.svc.cluster.local
             port:
               number: 80
 
+    # 3. Nexus Route
     - match:
-        - authority:
-            exact: "nexus.35.223.57.54.nip.io"
+        - headers:
+            host:
+              exact: "nexus.35.223.57.54.nip.io"
       route:
         - destination:
             host: nexus-nexus-repository-manager.nexus.svc.cluster.local
