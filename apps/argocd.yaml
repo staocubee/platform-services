@@ -13,9 +13,11 @@ spec:
     targetRevision: 7.8.2
     helm:
       values: |
-        server:
-          extraArgs:
-            - --insecure
+        configs:
+          params:
+            server.insecure: true
+          cm: 
+            url: http://argocd.35.223.57.54.nip.io
             
   destination:
     server: https://kubernetes.default.svc
