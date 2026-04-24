@@ -14,7 +14,7 @@ spec:
     helm:
       values: |
         configs:
-          params:
+          parameters:
             server.insecure: true
           cm: 
             url: http://argocd.35.223.57.54.nip.io
