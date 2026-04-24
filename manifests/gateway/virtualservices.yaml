@@ -12,8 +12,8 @@ spec:
     - istio-system/platform-gateway
   http:
     - match:
-        - authority:
-            exact: "argocd.35.223.57.54.nip.io"
+        - uri:
+            prefix: /  # Match everything
       route:
         - destination:
             host: argocd-server.argocd.svc.cluster.local
