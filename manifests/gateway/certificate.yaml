@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: argocd-cert
-  namespace: istio-system
+  namespace: istio-ingress
 spec:
   secretName: argocd-tls
   issuerRef:
@@ -11,3 +11,6 @@ spec:
   commonName: 136.115.108.14.nip.io
   dnsNames:
     - 136.115.108.14.nip.io
+    - argocd.136.115.108.14.nip.io
+    - grafana.136.115.108.14.nip.io
+    - nexus.136.115.108.14.nip.io
