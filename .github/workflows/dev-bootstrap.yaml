@@ -53,9 +53,9 @@ jobs:
 
       - name: Wait for ArgoCD
         run: |
-          kubectl rollout status deployment/argocd-server -n "$ARGOCD_NAMESPACE" --timeout=300s
-          kubectl rollout status deployment/argocd-repo-server -n "$ARGOCD_NAMESPACE" --timeout=300s
-          kubectl rollout status statefulset/argocd-application-controller -n "$ARGOCD_NAMESPACE" --timeout=300s
+          kubectl rollout status deployment/argocd-server -n "$ARGOCD_NAMESPACE" --timeout=600s
+          kubectl rollout status deployment/argocd-repo-server -n "$ARGOCD_NAMESPACE" --timeout=600s
+          kubectl rollout status statefulset/argocd-application-controller -n "$ARGOCD_NAMESPACE" --timeout=600s
 
       - name: Apply root app
         run: |
