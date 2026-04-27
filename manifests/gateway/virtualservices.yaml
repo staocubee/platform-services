@@ -5,9 +5,9 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - "argocd.35.223.57.54.nip.io"
-    - "grafana.35.223.57.54.nip.io"
-    - "nexus.35.223.57.54.nip.io"
+    - "argocd.136.115.108.14.nip.io"
+    - "grafana.136.115.108.14.nip.io"
+    - "nexus.136.115.108.14.nip.io"
   gateways:
     - istio-system/platform-gateway
   http:
@@ -15,7 +15,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "argocd.35.223.57.54.nip.io"
+              exact: "argocd.136.115.108.14.nip.io"
       route:
         - destination:
             host: argocd-server.argocd.svc.cluster.local
@@ -26,7 +26,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "grafana.35.223.57.54.nip.io"
+              exact: "grafana.136.115.108.14.nip.io"
       route:
         - destination:
             host: monitoring-grafana.monitoring.svc.cluster.local
@@ -37,7 +37,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "nexus.35.223.57.54.nip.io"
+              exact: "nexus.136.115.108.14.nip.io"
       route:
         - destination:
             host: nexus-nexus-repository-manager.nexus.svc.cluster.local
