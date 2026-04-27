@@ -7,9 +7,8 @@ resources:
   - install.yaml
 
 patches:
-  - path: argocd-server-insecure-patch.yaml
+  - path: argocd-cmd-params-patch.yaml
     target:
-      group: apps
       version: v1
-      kind: Deployment
-      name: argocd-server
+      kind: ConfigMap
+      name: argocd-cmd-params-cm

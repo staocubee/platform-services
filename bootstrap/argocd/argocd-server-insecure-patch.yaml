@@ -1,5 +1,6 @@
-- op: add
-  path: /spec/template/spec/containers/0/command
-  value:
-    - argocd-server
-    - --insecure
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cmd-params-cm
+data:
+  server.insecure: "true"
