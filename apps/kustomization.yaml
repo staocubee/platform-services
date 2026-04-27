@@ -6,17 +6,12 @@ resources:
 
 namespace: argocd
 
+
 patches:
   - target:
-      kind: Deployment
-      name: argocd-server
+      kind: ConfigMap
+      name: argocd-cm
     patch: |-
-      - op: add
-        path: /spec/template/spec/containers/0/args/-
-        value: "--insecure"
-
-configMapGenerator:
-  - name: argocd-cm
-    behavior: merge
-    literals:
-      - url=https://argocd.136.115.108.14.nip.io
+      - op: replace
+        path: /data/url
+        value: "https://argocd.136.115.108.14.nip.io"
