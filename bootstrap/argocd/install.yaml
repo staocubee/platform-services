@@ -1,0 +1,4 @@
+mkdir -p bootstrap/argocd
+
+curl -L https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml \
+  -o bootstrap/argocd/install.yaml

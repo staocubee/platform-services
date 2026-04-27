@@ -9,6 +9,10 @@ permissions:
   contents: read
   id-token: write
 
+concurrency:
+  group: platform-services-dev
+  cancel-in-progress: false
+
 jobs:
   bootstrap:
     runs-on: ubuntu-latest
@@ -39,14 +43,13 @@ jobs:
           location: ${{ env.REGION }}
           project_id: ${{ env.PROJECT_ID }}
 
-      - name: Ensure argocd namespace exists
+      - name: Ensure ArgoCD namespace exists
         run: |
-          kubectl apply -f bootstrap/argocd-install.yaml
+          kubectl create namespace "$ARGOCD_NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
 
-      - name: Install or upgrade ArgoCD
+      - name: Install ArgoCD with Kustomize
         run: |
-          kubectl apply -n "$ARGOCD_NAMESPACE" --server-side --force-conflicts \
-            -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+          kubectl apply -k bootstrap/argocd --server-side --force-conflicts
 
       - name: Wait for ArgoCD
         run: |
@@ -57,3 +60,7 @@ jobs:
       - name: Apply root app
         run: |
           kubectl apply -f bootstrap/root-app.yaml -n "$ARGOCD_NAMESPACE"
+
+      - name: Show ArgoCD apps
+        run: |
+          kubectl get applications -n "$ARGOCD_NAMESPACE" || true

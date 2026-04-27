@@ -7,6 +7,10 @@ permissions:
   contents: read
   id-token: write
 
+concurrency:
+  group: platform-services-dev
+  cancel-in-progress: false
+
 jobs:
   destroy-services:
     runs-on: ubuntu-latest
@@ -36,18 +40,30 @@ jobs:
           location: ${{ env.REGION }}
           project_id: ${{ env.PROJECT_ID }}
 
+      - name: Remove ArgoCD app finalizers
+        run: |
+          kubectl patch application platform-root -n "$ARGOCD_NAMESPACE" \
+            -p '{"metadata":{"finalizers":[]}}' --type=merge || true
+
+          kubectl get applications -n "$ARGOCD_NAMESPACE" -o name | \
+            xargs -r -I {} kubectl patch {} -n "$ARGOCD_NAMESPACE" \
+            -p '{"metadata":{"finalizers":[]}}' --type=merge || true
+
       - name: Delete root app
         run: |
           kubectl delete -f bootstrap/root-app.yaml -n "$ARGOCD_NAMESPACE" --ignore-not-found=true
 
-      - name: Wait a bit for ArgoCD pruning
+      - name: Delete child apps
+        run: |
+          kubectl get applications -n "$ARGOCD_NAMESPACE" -o name | \
+            xargs -r kubectl delete -n "$ARGOCD_NAMESPACE" --ignore-not-found=true
+
+      - name: Wait for ArgoCD pruning
         run: sleep 60
 
       - name: Delete ArgoCD install
         run: |
-          kubectl delete -n "$ARGOCD_NAMESPACE" \
-            -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml \
-            --ignore-not-found=true
+          kubectl delete -k bootstrap/argocd --ignore-not-found=true
 
       - name: Delete ArgoCD namespace
         run: |
