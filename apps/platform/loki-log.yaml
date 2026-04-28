@@ -7,6 +7,21 @@ metadata:
     argocd.argoproj.io/sync-wave: "5"
 spec:
   project: default
+
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      jsonPointers:
+        - /spec/template/spec/containers/*/resources
+        - /spec/template/spec/initContainers/*/resources
+        - /spec/template/spec/tolerations
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/template/spec/containers/*/resources
+        - /spec/template/spec/initContainers/*/resources
+        - /spec/template/spec/tolerations
+
   source:
     repoURL: https://grafana.github.io/helm-charts
     chart: loki
@@ -37,6 +52,14 @@ spec:
             enabled: true
             size: 10Gi
 
+          resources:
+            requests:
+              cpu: 500m
+              memory: 2Gi
+              ephemeral-storage: 1Gi
+            limits:
+              ephemeral-storage: 1Gi
+
         read:
           replicas: 0
         write:
@@ -46,12 +69,15 @@ spec:
 
         gateway:
           enabled: false
+
   destination:
     server: https://kubernetes.default.svc
     namespace: logging
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
