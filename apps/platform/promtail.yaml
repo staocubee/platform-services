@@ -13,14 +13,37 @@ spec:
     targetRevision: 6.16.6
     helm:
       values: |
+        fullnameOverride: promtail
+
         daemonset:
           enabled: true
+
+        deployment:
+          enabled: false
+
         config:
           clients:
             - url: http://loki.logging.svc.cluster.local:3100/loki/api/v1/push
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+            ephemeral-storage: 1Gi
+          limits:
+            memory: 256Mi
+            ephemeral-storage: 1Gi
+
+        tolerations:
+          - key: kubernetes.io/arch
+            operator: Equal
+            value: amd64
+            effect: NoSchedule
+
   destination:
     server: https://kubernetes.default.svc
     namespace: logging
+
   syncPolicy:
     automated:
       prune: true
