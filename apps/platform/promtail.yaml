@@ -72,10 +72,10 @@ spec:
           requests:
             cpu: 50m
             memory: 64Mi
-            ephemeral-storage: 512Gi
+            ephemeral-storage: 512Mi
           limits:
             memory: 128Mi
-            ephemeral-storage: 1Gi
+            ephemeral-storage: 512Mi
 
   destination:
     server: https://kubernetes.default.svc
