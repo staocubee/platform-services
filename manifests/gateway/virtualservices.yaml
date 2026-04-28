@@ -8,6 +8,14 @@ spec:
     - "argocd.136.113.23.157.nip.io"
     - "grafana.136.113.23.157.nip.io"
     - "nexus.136.113.23.157.nip.io"
+    - "dev-es-es-http.136.113.23.157.nip.io"
+    - "dev-kibana-kb-http.136.113.23.157.nip.io"
+    - "elastic-operator-webhook.136.113.23.157.nip.io"
+    - "monitoring-kube-prometheus-prometheus.136.113.23.157.nip.io"
+    - "monitoring-kube-prometheus-alertmanager.136.113.23.157.nip.io"
+
+
+    
   gateways:
     - istio-system/platform-gateway
   http:
@@ -43,3 +51,58 @@ spec:
             host: nexus-nexus-repository-manager.nexus.svc.cluster.local
             port:
               number: 8081
+
+    # 4. Elastic Route
+    - match:
+        - headers:
+            host:
+              exact: "dev-es-es-http.136.113.23.157.nip.io"
+      route:
+        - destination:
+            host: dev-es-es-http.elastic.svc.cluster.local
+            port:
+              number: 9200
+
+    # 5. Kibana Route
+    - match:
+        - headers:
+            host:
+              exact: "dev-kibana-kb-http.136.113.23.157.nip.io"
+      route:
+        - destination:
+            host: dev-kibana-kb-http.elastic.svc.cluster.local
+            port:
+              number: 5601
+
+    # 5. Elastic Operator Route
+    - match:
+        - headers:
+            host:
+              exact: "elastic-operator-webhook.136.113.23.157.nip.io"
+      route:
+        - destination:
+            host: elastic-operator-webhook.elastic.svc.cluster.local
+            port:
+              number: 9443
+
+    # 5. Monitoring Prometheus Operator Route
+    - match:
+        - headers:
+            host:
+              exact: "monitoring-kube-prometheus-prometheus.136.113.23.157.nip.io"
+      route:
+        - destination:
+            host: monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local
+            port:
+              number: 9090
+
+    # 5. Monitoring Prometheus Alertmanager Route
+    - match:
+        - headers:
+            host:
+              exact: "monitoring-kube-prometheus-alertmanager.136.113.23.157.nip.io"
+      route:
+        - destination:
+            host: monitoring-kube-prometheus-alertmanager.monitoring.svc.cluster.local
+            port:
+              number: 9093

@@ -11,6 +11,11 @@ spec:
   commonName: 136.113.23.157.nip.io
   dnsNames:
     - 136.113.23.157.nip.io
-    - argocd.136.113.23.157.nip.io
-    - grafana.136.113.23.157.nip.io
-    - nexus.136.113.23.157.nip.io
+    - "argocd.136.113.23.157.nip.io"
+    - "grafana.136.113.23.157.nip.io"
+    - "nexus.136.113.23.157.nip.io"
+    - "dev-es-es-http.136.113.23.157.nip.io"
+    - "dev-kibana-kb-http.136.113.23.157.nip.io"
+    - "elastic-operator-webhook.136.113.23.157.nip.io"
+    - "monitoring-kube-prometheus-prometheus.136.113.23.157.nip.io"
+    - "monitoring-kube-prometheus-alertmanager.136.113.23.157.nip.io"
