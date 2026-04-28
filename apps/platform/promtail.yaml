@@ -21,9 +21,52 @@ spec:
         deployment:
           enabled: false
 
+        defaultVolumes:
+          - name: pods
+            hostPath:
+              path: /var/log/pods
+
+        defaultVolumeMounts:
+          - name: pods
+            mountPath: /var/log/pods
+            readOnly: true
+
         config:
+          positions:
+            filename: /tmp/positions.yaml
           clients:
             - url: http://loki.logging.svc.cluster.local:3100/loki/api/v1/push
+          snippets:
+            scrapeConfigs: |
+              - job_name: kubernetes-pods
+                pipeline_stages:
+                  - cri: {}
+                kubernetes_sd_configs:
+                  - role: pod
+                relabel_configs:
+                  - source_labels:
+                      - __meta_kubernetes_pod_node_name
+                    target_label: __host__
+                  - action: labelmap
+                    regex: __meta_kubernetes_pod_label_(.+)
+                  - action: replace
+                    source_labels:
+                      - __meta_kubernetes_namespace
+                    target_label: namespace
+                  - action: replace
+                    source_labels:
+                      - __meta_kubernetes_pod_name
+                    target_label: pod
+                  - action: replace
+                    source_labels:
+                      - __meta_kubernetes_pod_container_name
+                    target_label: container
+                  - replacement: /var/log/pods/*$1/*.log
+                    separator: /
+                    source_labels:
+                      - __meta_kubernetes_pod_uid
+                      - __meta_kubernetes_pod_container_name
+                    target_label: __path__
 
         resources:
           requests:
@@ -33,12 +76,6 @@ spec:
           limits:
             memory: 256Mi
             ephemeral-storage: 1Gi
-
-        tolerations:
-          - key: kubernetes.io/arch
-            operator: Equal
-            value: amd64
-            effect: NoSchedule
 
   destination:
     server: https://kubernetes.default.svc
