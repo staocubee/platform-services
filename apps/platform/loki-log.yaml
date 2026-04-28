@@ -12,14 +12,16 @@ spec:
     - group: apps
       kind: StatefulSet
       jsonPointers:
-        - /spec/template/spec/containers/*/resources
-        - /spec/template/spec/initContainers/*/resources
+        - /spec/template/spec/containers/0/resources
+        - /spec/template/spec/containers/1/resources
+        - /spec/template/spec/initContainers/0/resources
         - /spec/template/spec/tolerations
     - group: apps
       kind: Deployment
       jsonPointers:
-        - /spec/template/spec/containers/*/resources
-        - /spec/template/spec/initContainers/*/resources
+        - /spec/template/spec/containers/0/resources
+        - /spec/template/spec/containers/1/resources
+        - /spec/template/spec/initContainers/0/resources
         - /spec/template/spec/tolerations
 
   source:
