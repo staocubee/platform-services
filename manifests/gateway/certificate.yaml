@@ -8,9 +8,9 @@ spec:
   issuerRef:
     name: selfsigned-issuer
     kind: ClusterIssuer
-  commonName: 136.115.108.14.nip.io
+  commonName: 136.113.23.157.nip.io
   dnsNames:
-    - 136.115.108.14.nip.io
-    - argocd.136.115.108.14.nip.io
-    - grafana.136.115.108.14.nip.io
-    - nexus.136.115.108.14.nip.io
+    - 136.113.23.157.nip.io
+    - argocd.136.113.23.157.nip.io
+    - grafana.136.113.23.157.nip.io
+    - nexus.136.113.23.157.nip.io
