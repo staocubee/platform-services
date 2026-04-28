@@ -70,11 +70,11 @@ spec:
 
         resources:
           requests:
-            cpu: 100m
-            memory: 128Mi
-            ephemeral-storage: 1Gi
+            cpu: 50m
+            memory: 64Mi
+            ephemeral-storage: 512Gi
           limits:
-            memory: 256Mi
+            memory: 128Mi
             ephemeral-storage: 1Gi
 
   destination:

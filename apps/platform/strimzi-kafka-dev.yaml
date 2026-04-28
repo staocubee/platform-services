@@ -25,6 +25,7 @@ spec:
         watchAnyNamespace: false
         watchNamespaces:
           - kafka
+          - strimzi-system
 
         replicas: 1
 
