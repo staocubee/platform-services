@@ -5,7 +5,7 @@ git push -u origin main --force
 # argocd
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 # nexus
-kubectl exec -it nexus-nexus-repository-manager-74f65d5978-82z89 -n nexus -- /bin/bash
+kubectl exec -it nexus-nexus-repository-manager-74f65d5978-q94n6 -n nexus -- /bin/bash
 cat /nexus-data/admin.password
 
 # grafana
