@@ -5,14 +5,14 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - "argocd.136.113.23.157.nip.io"
-    - "grafana.136.113.23.157.nip.io"
-    - "nexus.136.113.23.157.nip.io"
-    - "dev-es-es-http.136.113.23.157.nip.io"
-    - "dev-kibana-kb-http.136.113.23.157.nip.io"
-    - "elastic-operator-webhook.136.113.23.157.nip.io"
-    - "monitoring-kube-prometheus-prometheus.136.113.23.157.nip.io"
-    - "monitoring-kube-prometheus-alertmanager.136.113.23.157.nip.io"
+    - "argocd.34.170.137.139.nip.io"
+    - "grafana.34.170.137.139.nip.io"
+    - "nexus.34.170.137.139.nip.io"
+    - "dev-es-es-http.34.170.137.139.nip.io"
+    - "dev-kibana-kb-http.34.170.137.139.nip.io"
+    - "elastic-operator-webhook.34.170.137.139.nip.io"
+    - "monitoring-kube-prometheus-prometheus.34.170.137.139.nip.io"
+    - "monitoring-kube-prometheus-alertmanager.34.170.137.139.nip.io"
 
 
     
@@ -23,7 +23,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "argocd.136.113.23.157.nip.io"
+              exact: "argocd.34.170.137.139.nip.io"
       route:
         - destination:
             host: argocd-server.argocd.svc.cluster.local
@@ -34,7 +34,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "grafana.136.113.23.157.nip.io"
+              exact: "grafana.34.170.137.139.nip.io"
       route:
         - destination:
             host: monitoring-grafana.monitoring.svc.cluster.local
@@ -45,7 +45,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "nexus.136.113.23.157.nip.io"
+              exact: "nexus.34.170.137.139.nip.io"
       route:
         - destination:
             host: nexus-nexus-repository-manager.nexus.svc.cluster.local
@@ -56,7 +56,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "dev-es-es-http.136.113.23.157.nip.io"
+              exact: "dev-es-es-http.34.170.137.139.nip.io"
       route:
         - destination:
             host: dev-es-es-http.elastic.svc.cluster.local
@@ -67,7 +67,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "dev-kibana-kb-http.136.113.23.157.nip.io"
+              exact: "dev-kibana-kb-http.34.170.137.139.nip.io"
       route:
         - destination:
             host: dev-kibana-kb-http.elastic.svc.cluster.local
@@ -78,7 +78,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "elastic-operator-webhook.136.113.23.157.nip.io"
+              exact: "elastic-operator-webhook.34.170.137.139.nip.io"
       route:
         - destination:
             host: elastic-operator-webhook.elastic.svc.cluster.local
@@ -89,7 +89,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "monitoring-kube-prometheus-prometheus.136.113.23.157.nip.io"
+              exact: "monitoring-kube-prometheus-prometheus.34.170.137.139.nip.io"
       route:
         - destination:
             host: monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local
@@ -100,7 +100,7 @@ spec:
     - match:
         - headers:
             host:
-              exact: "monitoring-kube-prometheus-alertmanager.136.113.23.157.nip.io"
+              exact: "monitoring-kube-prometheus-alertmanager.34.170.137.139.nip.io"
       route:
         - destination:
             host: monitoring-kube-prometheus-alertmanager.monitoring.svc.cluster.local

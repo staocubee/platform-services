@@ -8,14 +8,14 @@ spec:
   issuerRef:
     name: selfsigned-issuer
     kind: ClusterIssuer
-  commonName: 136.113.23.157.nip.io
+  commonName: 34.170.137.139.nip.io
   dnsNames:
-    - 136.113.23.157.nip.io
-    - "argocd.136.113.23.157.nip.io"
-    - "grafana.136.113.23.157.nip.io"
-    - "nexus.136.113.23.157.nip.io"
-    - "dev-es-es-http.136.113.23.157.nip.io"
-    - "dev-kibana-kb-http.136.113.23.157.nip.io"
-    - "elastic-operator-webhook.136.113.23.157.nip.io"
-    - "monitoring-kube-prometheus-prometheus.136.113.23.157.nip.io"
-    - "monitoring-kube-prometheus-alertmanager.136.113.23.157.nip.io"
+    - 34.170.137.139.nip.io
+    - "argocd.34.170.137.139.nip.io"
+    - "grafana.34.170.137.139.nip.io"
+    - "nexus.34.170.137.139.nip.io"
+    - "dev-es-es-http.34.170.137.139.nip.io"
+    - "dev-kibana-kb-http.34.170.137.139.nip.io"
+    - "elastic-operator-webhook.34.170.137.139.nip.io"
+    - "monitoring-kube-prometheus-prometheus.34.170.137.139.nip.io"
+    - "monitoring-kube-prometheus-alertmanager.34.170.137.139.nip.io"
